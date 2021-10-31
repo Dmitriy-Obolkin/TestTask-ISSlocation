@@ -1,24 +1,43 @@
-import logo from './logo.svg';
 import './App.css';
+import CCMain from './CCMain';
+import CCGoogleMaps from './CCGoogleMaps';
+import $ from "jquery";
+import CCPeople from './CCPeople';
+
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <div className="App-pos">
+        <CCMain/>
+
+      </div>
+      <div className="App-time">
+        <div>
+        <b>Current UTC time:</b>
+        <p> {JSON.parse(JSON.stringify({now: new Date()})).now}</p>
+        </div>
+      </div>
+      
+        
       </header>
+      <main >
+        <div className="container">
+          <CCGoogleMaps/>
+          {window.setTimeout(function () {
+          window.location.reload();
+          }, 5000)
+          
+            //$.ajax('http://api.open-notify.org/iss-now.json')
+          }
+        </div>
+        <div className="astros">
+        <CCPeople/>
+      </div>
+      </main>
     </div>
+    
   );
 }
 
